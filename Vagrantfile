@@ -91,6 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "grc"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
+    chef.add_recipe "mysql::server"
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
@@ -105,6 +106,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             login: true
           }
         ]
+      },
+      mysql: {
+        version: '5.6',
+        server_debian_password: '',
+        server_root_password: '',
+        server_repl_password: ''
       }
     }
   end
