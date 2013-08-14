@@ -11,6 +11,7 @@ SITE
       runit (>= 1.0)
       windows (>= 0.0.0)
       yum (>= 0.0.0)
+    grc (1.0.0)
     runit (1.1.6)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
@@ -21,4 +22,5 @@ SITE
 DEPENDENCIES
   apt (>= 0)
   git (>= 0)
+  grc (>= 0)
 
