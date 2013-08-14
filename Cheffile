@@ -1,5 +1,6 @@
 site 'http://community.opscode.com/api/v1'
 
+cookbook 'oh_my_zsh', github: 'shingara/oh-my-zsh-chef'
 cookbook 'postgresql', github: 'phlipper/chef-postgresql'
 cookbook 'rbenv', github: 'fnichol/chef-rbenv'
 cookbook 'redis', github: 'miah/chef-redis'

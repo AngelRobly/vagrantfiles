@@ -62,12 +62,21 @@ GIT
       apt (>= 0.0.0)
       dpkg_autostart (>= 0.0.0)
 
+GIT
+  remote: https://github.com/shingara/oh-my-zsh-chef
+  ref: master
+  sha: 46f89c50ce85a098a04b20e7f672be2700083ee9
+  specs:
+    oh_my_zsh (0.0.1)
+      git (>= 0.0.0)
+
 DEPENDENCIES
   apt (>= 0)
   git (>= 0)
   grc (>= 0)
   imagemagick (>= 0)
   mysql (>= 0)
+  oh_my_zsh (>= 0)
   postgresql (>= 0)
   rbenv (>= 0)
   redis (>= 0)

@@ -90,6 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "grc"
     chef.add_recipe "imagemagick"
+    chef.add_recipe "oh_my_zsh"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
     chef.add_recipe "postgresql::libpq"
@@ -129,6 +130,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 bundler pry pg mysql2
               ).map { |g| Hash[:name, g] }
             }
+          }
+        ]
+      },
+      oh_my_zsh: {
+        users: [
+          {
+            login: 'vagrant',
+            theme: 'ys',
+            plugins: %w(git gem bundler rails3 rails4)
           }
         ]
       }
