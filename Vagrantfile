@@ -89,6 +89,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "grc"
+    chef.add_recipe "imagemagick"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
     chef.add_recipe "postgresql::libpq"
