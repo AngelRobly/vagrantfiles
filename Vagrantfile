@@ -168,5 +168,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
 
+  config.vm.provision :shell, inline: %{
+    echo "Europe/Moscow" | sudo tee /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata
+  }
+
   config.omnibus.chef_version = :latest
 end
