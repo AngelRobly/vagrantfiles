@@ -2,6 +2,7 @@ site 'http://community.opscode.com/api/v1'
 
 cookbook 'postgresql', github: 'phlipper/chef-postgresql'
 cookbook 'rbenv', github: 'fnichol/chef-rbenv'
+cookbook 'redis', github: 'miah/chef-redis'
 cookbook 'ruby_build', github: 'fnichol/chef-ruby_build'
 
 cookbook 'apt'
