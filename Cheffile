@@ -1,5 +1,7 @@
 site 'http://community.opscode.com/api/v1'
 
+cookbook 'postgresql', github: 'phlipper/chef-postgresql'
+
 cookbook 'apt'
 cookbook 'git'
 cookbook 'grc'

@@ -5,6 +5,7 @@ SITE
     build-essential (1.4.0)
     chef_handler (1.1.4)
     dmg (1.1.0)
+    dpkg_autostart (0.1.6)
     git (2.5.2)
       build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
@@ -19,8 +20,18 @@ SITE
       chef_handler (>= 0.0.0)
     yum (2.3.0)
 
+GIT
+  remote: https://github.com/phlipper/chef-postgresql
+  ref: master
+  sha: 79e70f1d318836a9846545a178cf7b1529ba4e22
+  specs:
+    postgresql (0.11.2)
+      apt (>= 0.0.0)
+      dpkg_autostart (>= 0.0.0)
+
 DEPENDENCIES
   apt (>= 0)
   git (>= 0)
   grc (>= 0)
+  postgresql (>= 0)
 

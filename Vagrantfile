@@ -89,10 +89,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "grc"
+    chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::contrib"
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
+    chef.json = {
+      postgresql: {
+        users: [
+          {
+            username: 'vagrant',
+            password: '',
+            superuser: true,
+            createdb: true,
+            login: true
+          }
+        ]
+      }
+    }
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
