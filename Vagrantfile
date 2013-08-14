@@ -91,7 +91,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "grc"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
+    chef.add_recipe "postgresql::libpq"
     chef.add_recipe "mysql::server"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rbenv::user"
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
@@ -112,6 +115,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         server_debian_password: '',
         server_root_password: '',
         server_repl_password: ''
+      },
+      rbenv: {
+        user_installs: [
+          {
+            user: 'vagrant',
+            rubies: %w(2.0.0-p247),
+            global: '2.0.0-p247',
+            gems: {
+              '2.0.0-p247' => %w(
+                bundler pry pg mysql2
+              ).map { |g| Hash[:name, g] }
+            }
+          }
+        ]
       }
     }
   end
