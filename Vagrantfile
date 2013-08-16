@@ -176,5 +176,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     && dpkg-reconfigure --frontend noninteractive tzdata
   }
 
+  config.vm.provision :shell, inline: %{
+    if [ ! -f /home/vagrant/.gemrc ]; then
+      wget -O /home/vagrant/.gemrc \
+      https://raw.github.com/atipugin/dotfiles/master/gemrc
+    fi
+  }
+
   config.omnibus.chef_version = :latest
 end
