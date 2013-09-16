@@ -91,7 +91,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "grc"
-    chef.add_recipe "nfs"
     chef.add_recipe "imagemagick::rmagick"
     chef.add_recipe "oh_my_zsh"
     chef.add_recipe "postgresql::server"
@@ -99,8 +98,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "postgresql::libpq"
     chef.add_recipe "mysql::server"
     chef.add_recipe "redis::install"
+    chef.add_recipe "sphinx"
     chef.add_recipe "ruby_build"
     chef.add_recipe "rbenv::user"
+    chef.add_recipe "nfs" # Last because of problems with restarting :(
   #   chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
@@ -120,7 +121,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         version: '5.6',
         server_debian_password: '',
         server_root_password: '',
-        server_repl_password: ''
+        server_repl_password: '',
+        allow_remote_root: true
       },
       rbenv: {
         user_installs: [
@@ -144,6 +146,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             plugins: %w(git gem bundler rails3 rails4)
           }
         ]
+      },
+      sphinx: {
+        use_mysql: true,
+        use_postgres: true,
+        use_stemmer: true
       }
     }
   end
@@ -172,8 +179,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.validation_client_name = "ORGNAME-validator"
 
   config.vm.provision :shell, inline: %{
-    echo "Europe/Moscow" | sudo tee /etc/timezone \
-    && dpkg-reconfigure --frontend noninteractive tzdata
+    if [ $(date +%Z) != 'MSK' ]; then
+      echo "Europe/Moscow" | sudo tee /etc/timezone \
+      && dpkg-reconfigure --frontend noninteractive tzdata
+    fi
   }
 
   config.vm.provision :shell, inline: %{

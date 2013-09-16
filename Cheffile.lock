@@ -25,6 +25,11 @@ SITE
     runit (1.1.6)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
+    sphinx (0.6.3)
+      build-essential (>= 0.0.0)
+      mysql (>= 0.0.0)
+      postgresql (>= 0.0.0)
+      yum (>= 0.0.0)
     stunnel (2.0.4)
     windows (1.10.0)
       chef_handler (>= 0.0.0)
@@ -85,4 +90,5 @@ DEPENDENCIES
   rbenv (>= 0)
   redis (>= 0)
   ruby_build (>= 0)
+  sphinx (>= 0)
 
