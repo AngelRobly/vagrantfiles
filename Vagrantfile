@@ -98,6 +98,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "postgresql::libpq"
     chef.add_recipe "mysql::server"
     chef.add_recipe "redis::install"
+    chef.add_recipe "mongodb::10gen_repo"
+    chef.add_recipe "mongodb::default"
     chef.add_recipe "sphinx"
     chef.add_recipe "ruby_build"
     chef.add_recipe "rbenv::user"

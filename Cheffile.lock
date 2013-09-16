@@ -36,6 +36,15 @@ SITE
     yum (2.3.0)
 
 GIT
+  remote: https://github.com/edelight/chef-mongodb
+  ref: master
+  sha: b38a06039d159f5102e7e469d4218475acb5e0c1
+  specs:
+    mongodb (0.13.2)
+      apt (>= 1.8.2)
+      yum (>= 0.0.0)
+
+GIT
   remote: https://github.com/fnichol/chef-rbenv
   ref: master
   sha: 9afb4e5da2e6212504a12de3bbbd410cd96100f6
@@ -83,6 +92,7 @@ DEPENDENCIES
   git (>= 0)
   grc (>= 0)
   imagemagick (>= 0)
+  mongodb (>= 0)
   mysql (>= 0)
   nfs (>= 0)
   oh_my_zsh (>= 0)
