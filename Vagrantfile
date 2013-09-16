@@ -120,7 +120,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ]
       },
       mysql: {
-        version: '5.6',
         server_debian_password: '',
         server_root_password: '',
         server_repl_password: '',
