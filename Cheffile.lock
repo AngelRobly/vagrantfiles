@@ -71,6 +71,14 @@ GIT
       yum (>= 0.0.0)
 
 GIT
+  remote: https://github.com/phlipper/chef-nodejs
+  ref: master
+  sha: 72c52b39622e7a31afe9a13ec61b756c3a25e968
+  specs:
+    nodejs (1.7.0)
+      apt (>= 1.4.4)
+
+GIT
   remote: https://github.com/phlipper/chef-postgresql
   ref: master
   sha: 79e70f1d318836a9846545a178cf7b1529ba4e22
@@ -95,6 +103,7 @@ DEPENDENCIES
   mongodb (>= 0)
   mysql (>= 0)
   nfs (>= 0)
+  nodejs (>= 0)
   oh_my_zsh (>= 0)
   postgresql (>= 0)
   rbenv (>= 0)

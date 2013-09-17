@@ -4,6 +4,9 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+# Default password wherever it required.
+PASSWORD = 'secret'
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -107,6 +110,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "sphinx"
     chef.add_recipe "ruby_build"
     chef.add_recipe "rbenv::user"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "nodejs::npm"
     chef.add_recipe "nfs" # Last because of problems with restarting :(
   #   chef.add_role "web"
   #
@@ -116,7 +121,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         users: [
           {
             username: 'vagrant',
-            password: '',
+            password: PASSWORD,
             superuser: true,
             createdb: true,
             login: true
@@ -124,9 +129,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ]
       },
       mysql: {
-        server_debian_password: '',
-        server_root_password: '',
-        server_repl_password: '',
+        server_debian_password: PASSWORD,
+        server_root_password: PASSWORD,
+        server_repl_password: PASSWORD,
         allow_remote_root: true
       },
       rbenv: {
