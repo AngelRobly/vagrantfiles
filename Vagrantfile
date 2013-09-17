@@ -38,8 +38,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  { '.' => '/vagrant', '~/Code' => '/code' }.each do |from, to|
-    # config.vm.synced_folder from, to, nfs: !(RUBY_PLATFORM =~ /mingw32/)
+  synced_folders_config_file = File.join(Dir.pwd, '.vagrant-folders.yml')
+
+  if File.exists?(synced_folders_config_file)
+    YAML.load(File.read(synced_folders_config_file)).each do |from, to|
+      # config.vm.synced_folder from, to, nfs: !(RUBY_PLATFORM =~ /mingw32/)
+    end
   end
 
   # Provider-specific configuration so you can fine-tune various
