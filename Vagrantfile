@@ -22,7 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
+  [3000].each do |port|
+    config.vm.network :forwarded_port, guest: port, host: port
+  end
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -41,12 +43,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  synced_folders_config_file = File.join(Dir.pwd, '.vagrant-folders.yml')
-
-  if File.exists?(synced_folders_config_file)
-    YAML.load(File.read(synced_folders_config_file)).each do |from, to|
-      # config.vm.synced_folder from, to, nfs: !(RUBY_PLATFORM =~ /mingw32/)
-    end
+  { '~/Code' => '/code' }.each do |from, to|
+    # config.vm.synced_folder from, to, nfs: !(RUBY_PLATFORM =~ /mingw32/)
   end
 
   # Provider-specific configuration so you can fine-tune various

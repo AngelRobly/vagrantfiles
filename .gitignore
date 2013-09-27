@@ -1,5 +1,3 @@
 .vagrant/
 cookbooks/
 tmp/
-
-.vagrant-folders.yml
