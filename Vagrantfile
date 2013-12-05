@@ -151,7 +151,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           {
             login: 'vagrant',
             theme: 'ys',
-            plugins: %w(git gem bundler rails3 rails4)
+            plugins: %w(git gem bundler rails)
           }
         ]
       },
@@ -197,6 +197,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if [ ! -f /home/vagrant/.gemrc ]; then
       wget -O /home/vagrant/.gemrc \
       https://raw.github.com/atipugin/dotfiles/master/gemrc
+    fi
+  }
+
+  config.vm.provision :shell, inline: %{
+    if [ ! -f /etc/ssl/certs/cacert.pem ]; then
+      wget -O /etc/ssl/certs/cacert.pem \
+      http://curl.haxx.se/ca/cacert.pem
+    fi
+  }
+
+  config.vm.provision :shell, inline: %{
+    if [ -n $SSL_CERT_FILE ]; then
+      echo "export SSL_CERT_FILE=/etc/ssl/certs/cacert.pem" >> /home/vagrant/.zshrc
     fi
   }
 
