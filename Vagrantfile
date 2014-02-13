@@ -88,6 +88,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Set ulimit before running chef-solo (source: http://bit.ly/1cV6w1g)
   config.vm.provision :shell, inline: 'ulimit -n 4048'
 
+  # Don't install gem documentation anymore!
+  config.vm.provision :shell, inline: %{
+    if [ ! -f /home/vagrant/.gemrc ]; then
+      echo "gem: --no-document" > /home/vagrant/.gemrc
+    fi
+  }
+
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
@@ -193,13 +200,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if [ $(date +%Z) != 'MSK' ]; then
       echo "Europe/Moscow" | sudo tee /etc/timezone \
       && dpkg-reconfigure --frontend noninteractive tzdata
-    fi
-  }
-
-  config.vm.provision :shell, inline: %{
-    if [ ! -f /home/vagrant/.gemrc ]; then
-      wget -O /home/vagrant/.gemrc \
-      https://raw.github.com/atipugin/dotfiles/master/gemrc
     fi
   }
 
